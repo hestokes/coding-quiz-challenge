@@ -23,7 +23,7 @@ var start = function () {
 
   h1El.textContent = "Coding Quiz Challenge";
   pEl.textContent =
-    "Try to answer the following code-relrated questions within the time limit. Please keep in mind that incorrect answers will penalize your score time by 10 seconds";
+    "Try to answer the following code-related questions within the time limit. Please keep in mind that incorrect answers will penalize your score time by 10 seconds";
   buttonEl.textContent = "Start Quiz";
 
   introContainer.className = "intro-main";
@@ -195,12 +195,10 @@ var saveUsername = function () {
   localStorage.setItem("Usernames", userName);
 };
 
-
 function getUsername() {
   var input = document.getElementById("input").userName;
   previousUsername.innerText = localStorage.getItem("Usernames", input);
-};
-
+}
 
 function endTheGame() {
   clearInterval(startTimer);
