@@ -107,3 +107,60 @@ var timeCount = function () {
 
   getQuestions();
 };
+
+var getQuestions = function () {
+  var questionContainer = document.createElement("div");
+  var questionPEl = document.createElement("p");
+  var buttonContainer = document.createElement("div");
+  var button0 = document.createElement("button");
+  var button1 = document.createElement("button");
+  var button2 = document.createElement("button");
+  var button3 = document.createElement("button");
+
+  if (quizTimerCounter == quizQuestions.length) {
+    endTheGame();
+    return;
+  }
+
+  questionPEl.textContent = quizQuestions[quizTimerCounter].question;
+  button0.textContent = quizQuestions[quizTimerCounter].choices[0];
+  button1.textContent = quizQuestions[quizTimerCounter].choices[1];
+  button2.textContent = quizQuestions[quizTimerCounter].choices[2];
+  button3.textContent = quizQuestions[quizTimerCounter].choices[3];
+
+  questionContainer.className = "question";
+  buttonContainer.className = "btns";
+  button0.className = "btn btn0";
+  button1.className = "btn btn1";
+  button2.className = "btn btn2";
+  button3.className = "btn btn3";
+
+  function onClickListener(event) {
+    const answer = quizQuestions[quizTimerCounter].answer;
+    if (answer === event.target.textContent) {
+      score += 10;
+      incrementScore(score);
+    } else {
+      totalTime -= 10;
+    }
+    quizTimerCounter++;
+    removeAllChildren(questionContainer);
+    getQuestions();
+  }
+
+  button0.addEventListener("click", onClickListener);
+  button1.addEventListener("click", onClickListener);
+  button2.addEventListener("click", onClickListener);
+  button3.addEventListener("click", onClickListener);
+
+  quiz.appendChild(questionContainer);
+  quiz.appendChild(buttonContainer);
+  questionContainer.appendChild(questionPEl);
+  questionContainer.appendChild(buttonContainer);
+  buttonContainer.appendChild(button0);
+  buttonContainer.appendChild(button1);
+  buttonContainer.appendChild(button2);
+  buttonContainer.appendChild(button3);
+};
+
+
