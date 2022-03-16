@@ -12,6 +12,7 @@ let score = 0;
 var highscore = localStorage.getItem("highscore");
 const scoreText = document.querySelector(".score");
 const previousHighScore = document.querySelector(".previousHighScore");
+const submitUsername = document.querySelector("#userNameSubmit");
 
 var start = function () {
   //Start and introduction
@@ -22,7 +23,7 @@ var start = function () {
 
   h1El.textContent = "Coding Quiz Challenge";
   pEl.textContent =
-    "Try to answer the following code-relrated questions within the time limit. Keep in mind that incorrect answers will penaltize your score time by 10 seconds";
+    "Try to answer the following code-relrated questions within the time limit. Please keep in mind that incorrect answers will penalize your score time by 10 seconds";
   buttonEl.textContent = "Start Quiz";
 
   introContainer.className = "intro-main";
@@ -192,23 +193,25 @@ var saveScores = function () {
 
 var saveUsername = function () {
   localStorage.setItem("Usernames", userName);
-}
+};
 
-function getUsername () {
+
+function getUsername() {
   var input = document.getElementById("input").userName;
   previousUsername.innerText = localStorage.getItem("Usernames", input);
-}
+};
+
+
 function endTheGame() {
   clearInterval(startTimer);
   removeAllChildren(main);
-  let userName = document.createElement("input");
-  main.appendChild(userName);
+  // let userName = document.createElement("input"); TODO
+  // main.appendChild(userName); TODO
   saveScores();
-  gethighScore()
-  saveUsername();
-  
-  //enter and save username
-}
+  gethighScore();
+  // saveUsername(); TODO
 
+  //enter and save username TODO
+}
 
 start();
