@@ -87,3 +87,23 @@ var quizQuestions = [
     answer: "4. console log",
   },
 ];
+
+let startTimer;
+
+var timeCount = function () {
+  quizTimerCounter = 0;
+  totalTime = 75;
+  timeLeft.textContent = totalTime;
+
+  startTimer = setInterval(function () {
+    totalTime--;
+    timeLeft.textContent = totalTime;
+    if (totalTime <= 0) {
+      clearInterval(startTimer);
+      if (quizTimerCounter < quizQuestions.length - 1) {
+      }
+    }
+  }, 1000);
+
+  getQuestions();
+};
