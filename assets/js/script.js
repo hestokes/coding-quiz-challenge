@@ -190,12 +190,25 @@ var saveScores = function () {
   localStorage.setItem("scores", score);
 };
 
+var saveUsername = function () {
+  localStorage.setItem("Usernames", userName);
+}
+
+function getUsername () {
+  var input = document.getElementById("input").userName;
+  previousUsername.innerText = localStorage.getItem("Usernames", input);
+}
 function endTheGame() {
   clearInterval(startTimer);
   removeAllChildren(main);
+  let userName = document.createElement("input");
+  main.appendChild(userName);
   saveScores();
-  gethighScore();
+  gethighScore()
+  saveUsername();
   
+  //enter and save username
 }
+
 
 start();
