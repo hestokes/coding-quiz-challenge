@@ -11,6 +11,7 @@ let score = 0;
 
 var highscore = localStorage.getItem("highscore");
 const scoreText = document.querySelector(".score");
+const previousHighScore = document.querySelector(".previousHighScore");
 
 var start = function () {
   //Start and introduction
@@ -163,4 +164,38 @@ var getQuestions = function () {
   buttonContainer.appendChild(button3);
 };
 
+function removeAllChildren(questionContainer) {
+  while (questionContainer.firstChild) {
+    questionContainer.removeChild(questionContainer.firstChild);
+  }
+}
 
+function gethighScore() {
+  if (highscore !== null) {
+    if (score > highscore) {
+      localStorage.setItem("highscore", score);
+    }
+  } else {
+    localStorage.setItem("highscore", score);
+  }
+  previousHighScore.innerText = localStorage.getItem("highscore", score);
+}
+
+incrementScore = (num) => {
+  score + -num;
+  scoreText.innerText = score;
+};
+
+var saveScores = function () {
+  localStorage.setItem("scores", score);
+};
+
+function endTheGame() {
+  clearInterval(startTimer);
+  removeAllChildren(main);
+  saveScores();
+  gethighScore();
+  
+}
+
+start();
